@@ -254,7 +254,6 @@ body.con-intro{overflow:hidden}
     <img src="assets/isotipo-negativo.png" alt="" class="intro-iso">
     <img src="assets/logotipo-negativo.png" alt="Rebobina" class="intro-logo">
     <button class="intro-play" id="intro-play">▶ Play</button>
-    <button class="intro-saltar" id="intro-saltar">Entrar sin sonido</button>
   </div>
 </div>
 
@@ -496,20 +495,11 @@ body.con-intro{overflow:hidden}
 <script>
 (function(){
   var intro=document.getElementById('intro');
-  var musica=new Audio('assets/sonido/musica.mp3'); musica.loop=false; musica.volume=0;
-  var claq=new Audio('assets/sonido/claqueta.mp3'); claq.volume=.8;
-  function fade(to,ms){var from=musica.volume,t0=performance.now();(function step(t){var k=Math.max(0,Math.min(1,(t-t0)/ms));musica.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1)requestAnimationFrame(step);else if(to===0)musica.pause()})(t0)}
-  function entrar(conSonido){intro.classList.add('fuera');document.body.classList.remove('con-intro');
-    if(conSonido){try{claq.currentTime=0;claq.play().catch(function(){})}catch(e){}
-      setTimeout(function(){musica.play().then(function(){fade(.55,1500)}).catch(function(){})},450)}
-    try{sessionStorage.setItem('rb-intro','1')}catch(e){}}
+  function entrar(){intro.classList.add('fuera');document.body.classList.remove('con-intro');try{sessionStorage.setItem('rb-intro','1')}catch(e){}}
   var visto=false;try{visto=sessionStorage.getItem('rb-intro')==='1'}catch(e){}
-  if(visto){intro.classList.add('fuera');document.body.classList.remove('con-intro')}
-  document.getElementById('intro-play').addEventListener('click',function(){entrar(true)});
-  document.getElementById('intro-saltar').addEventListener('click',function(){entrar(false)});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!intro.classList.contains('fuera'))entrar(false)});
-  document.addEventListener('visibilitychange',function(){if(document.hidden&&!musica.paused)fade(0,300)});
-  document.querySelectorAll('video[controls]').forEach(function(v){v.addEventListener('play',function(){if(!musica.paused)fade(0,600)})});
+  if(visto)entrar();
+  document.getElementById('intro-play').addEventListener('click',entrar);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!intro.classList.contains('fuera'))entrar()});
 })();
 </script>
 <script>
