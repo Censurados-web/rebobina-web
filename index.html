@@ -491,7 +491,7 @@ body.con-intro{overflow:hidden}
   var intro=document.getElementById('intro');
   var musica=new Audio('assets/sonido/musica.mp3'); musica.loop=false; musica.volume=0;
   var claq=new Audio('assets/sonido/claqueta.mp3'); claq.volume=.8;
-  function fade(to,ms){var from=musica.volume,t0=performance.now();(function step(t){var k=Math.min(1,(t-t0)/ms);musica.volume=from+(to-from)*k;if(k<1)requestAnimationFrame(step);else if(to===0)musica.pause()})(t0)}
+  function fade(to,ms){var from=musica.volume,t0=performance.now();(function step(t){var k=Math.max(0,Math.min(1,(t-t0)/ms));musica.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1)requestAnimationFrame(step);else if(to===0)musica.pause()})(t0)}
   function entrar(conSonido){intro.classList.add('fuera');document.body.classList.remove('con-intro');
     if(conSonido){try{claq.currentTime=0;claq.play().catch(function(){})}catch(e){}
       setTimeout(function(){musica.play().then(function(){fade(.55,1500)}).catch(function(){})},450)}
