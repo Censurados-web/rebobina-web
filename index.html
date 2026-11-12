@@ -220,6 +220,20 @@ body.con-intro{overflow:hidden}
 .formatos-nota{margin-top:24px;font-size:20px;text-align:center}
 .formatos-nota a{color:var(--rojo)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.desde-rej{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px}
+.desde{border:2px solid var(--negro);border-radius:26px;padding:28px 26px;display:flex;flex-direction:column;gap:8px;min-height:280px}
+.desde .num{font-family:Anton;color:var(--rojo);font-size:34px;line-height:1}
+.desde h3{font-size:28px;letter-spacing:.02em}
+.desde p{font-size:16px;opacity:.8}
+.desde .precio{margin-top:auto;font-family:Anton;font-size:58px;line-height:1;color:var(--negro)}
+.desde .precio small{display:block;font-family:Barlow;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
+.pide{margin-top:46px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;background:var(--negro);color:var(--crema);border-radius:26px;padding:34px 40px}
+.pide p{font-size:21px;max-width:52ch}
+.pide .boton.negro{background:var(--rojo);border-color:var(--rojo);color:var(--negro)}
+.pide .boton.negro:hover{background:var(--crema);border-color:var(--crema)}
+@media (max-width:980px){.desde-rej{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.desde-rej{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="con-intro">
@@ -244,7 +258,7 @@ body.con-intro{overflow:hidden}
       <li><a href="#digitalizacion">Servicios</a></li>
       <li><a href="#ideas">Ideas</a></li>
       <li><a href="#como">Así funciona</a></li>
-      <li><a href="#tarifas">Tarifas</a></li>
+      <li><a href="#tarifas">Precios</a></li>
       <li><button class="sonido" id="sonido" aria-pressed="false" title="Activar el sonido del proyector">♪ Sonido</button></li>
       <li><a class="cta" href="#contacto">Contacto</a></li>
     </ul>
@@ -394,65 +408,18 @@ body.con-intro{overflow:hidden}
   <section class="claro grano bloque tarifas" id="tarifas">
     <div class="wrap">
       <span class="etiqueta">Y vuelve a verlo todo</span>
-      <h2>Tarifas 2026</h2>
+      <h2>Precios</h2>
       <span class="raya"></span>
-      <p style="font-size:22px">Precios con IVA incluido. Presupuesto cerrado en el momento de la consulta.</p>
-
-      <div class="grupo"><h3><span class="num">01</span>Digitalización</h3>
-        <div class="tablas">
-          <div class="tabla"><h4>Vídeo doméstico</h4><p class="formatos">VHS, VHS-C, S-VHS, Vídeo 8, Hi8, Digital 8, Betamax, MiniDV, Mini DVD, HDV · a MP4, AVI o MOV</p>
-            <table><tr><td>Hasta 15 min</td><td>20 €</td></tr>
-<tr><td>Hasta 30 min</td><td>25 €</td></tr>
-<tr><td>Hasta 60 min</td><td>30 €</td></tr>
-<tr><td>Hasta 90 min</td><td>35 €</td></tr>
-<tr><td>Hasta 120 min</td><td>40 €</td></tr>
-<tr><td>Más de 120 min</td><td>12 €/h</td></tr>
-<tr><td>Más de 10 horas</td><td>11 €/h</td></tr>
-<tr><td>Más de 20 horas</td><td>10 €/h</td></tr>
-<tr><td>Más de 30 horas</td><td>9 €/h</td></tr></table>
-            <p class="notas">Formato NTSC: +50 %. Reparación de cintas: 8 €.</p></div>
-          <div class="tabla"><h4>Cine · 8 mm y Súper 8</h4><p class="formatos">Telecine fotograma a fotograma · Full HD 1080p</p>
-            <table><tr><td>Hasta 15 min</td><td>55 €</td></tr>
-<tr><td>Hasta 30 min</td><td>75 €</td></tr>
-<tr><td>Hasta 45 min</td><td>105 €</td></tr>
-<tr><td>Hasta 60 min</td><td>135 €</td></tr>
-<tr><td>Hasta 75 min</td><td>160 €</td></tr>
-<tr><td>Hasta 90 min</td><td>185 €</td></tr>
-<tr><td>Hasta 105 min</td><td>225 €</td></tr>
-<tr><td>Hasta 120 min</td><td>240 €</td></tr>
-<tr><td>Más de 120 min</td><td>1,99 €/min</td></tr></table>
-            <p class="notas">Facturación mínima: 15 minutos (4 bobinas pequeñas de Súper 8 / 8 mm).</p></div>
-          <div class="tabla"><h4>Audio · vinilo y casete</h4><p class="formatos">A CD, MP3 o WAV</p>
-            <table><tr><td>Hasta 15 min</td><td>20 €</td></tr>
-<tr><td>Hasta 30 min</td><td>25 €</td></tr>
-<tr><td>Hasta 60 min</td><td>30 €</td></tr>
-<tr><td>Hasta 80 min</td><td>35 €</td></tr>
-<tr><td>Más de 80 min</td><td>0,45 €/min</td></tr></table></div>
-          <div class="tabla"><h4>Negativos y diapositivas 35 mm</h4><p class="formatos">Precio por unidad · estándar / alta</p>
-            <table><tr><td>De 1 a 50</td><td>0,85 € / 0,95 €</td></tr>
-<tr><td>De 51 a 150</td><td>0,75 € / 0,85 €</td></tr>
-<tr><td>De 151 a 300</td><td>0,60 € / 0,75 €</td></tr>
-<tr><td>De 301 a 500</td><td>0,45 € / 0,55 €</td></tr>
-<tr><td>Más de 500</td><td>0,40 € / 0,50 €</td></tr></table>
-            <p class="notas">Otros formatos, consultar. CD, DVD, pendrive o disco duro no incluidos.</p></div>
-        </div>
+      <p style="font-size:22px">Para que te hagas una idea. IVA incluido.</p>
+      <div class="desde-rej">
+        <div class="desde"><span class="num">01</span><h3>Digitalización de vídeo</h3><p>VHS, Hi8, MiniDV, Betamax…</p><span class="precio"><small>desde</small>20 €</span></div>
+        <div class="desde"><span class="num">01</span><h3>Digitalización de cine</h3><p>8 mm y Súper 8, fotograma a fotograma</p><span class="precio"><small>desde</small>55 €</span></div>
+        <div class="desde"><span class="num">02</span><h3>Tu película editada</h3><p>Montaje, música, sonido, color y narrativa</p><span class="precio"><small>desde</small>350 €</span></div>
+        <div class="desde"><span class="num">03</span><h3>Proyección</h3><p>En interior o al aire libre, por Cataluña</p><span class="precio"><small>desde</small>450 €</span></div>
       </div>
-
-      <div class="grupo"><h3><span class="num">02</span>Edición</h3>
-        <div class="tablas">
-          <div class="tabla"><h4>Montaje de 8 a 10 minutos</h4><p class="grande">350 €</p></div>
-          <div class="tabla"><h4>Montaje de 11 a 14 minutos</h4><p class="grande">450 €</p></div>
-          <div class="tabla"><h4>Animación de fotografías antiguas</h4><p class="formatos">Para quien no tiene vídeo</p><p class="grande">3,50 €<small>por fotografía</small></p></div>
-        </div>
-        <p class="aviso" style="margin-top:16px">Precios de referencia: el importe final depende del volumen de material y de lo que nos pidas.</p>
-      </div>
-
-      <div class="grupo"><h3><span class="num">03</span>Proyección</h3>
-        <div class="tablas">
-          <div class="tabla"><h4>En interior</h4><p class="formatos">Pantalla de 3 × 4 m, proyector y sonido incluidos</p><p class="grande">450 €<small>+ desplazamiento</small></p></div>
-          <div class="tabla"><h4>Al aire libre</h4><p class="formatos">Pantalla inflable de 7 × 5 m, proyector profesional, sonido y técnicos incluidos</p><p class="grande">700 €<small>+ desplazamiento</small></p></div>
-        </div>
-        <p class="aviso" style="margin-top:16px">El desplazamiento varía según la distancia dentro de Cataluña.</p>
+      <div class="pide">
+        <p>Cada historia es distinta. Cuéntanos qué tienes guardado y te enviamos las tarifas completas y un <b>presupuesto cerrado</b>.</p>
+        <a class="boton negro" href="#contacto">Pídenos las tarifas completas</a>
       </div>
     </div>
   </section>
