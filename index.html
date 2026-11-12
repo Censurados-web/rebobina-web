@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rebobina · Digitalización, edición y proyección de tus recuerdos</title>
+<meta name="description" content="Tus recuerdos ya tienen una historia. Nosotros la convertimos en película. Digitalizamos VHS, Súper 8, casetes y diapositivas, editamos tu película y la proyectamos en Cataluña.">
+<meta property="og:title" content="Rebobina · Tus recuerdos ya tienen una historia">
+<meta property="og:description" content="Nosotros la convertimos en película. Digitalización, edición y proyección.">
+<meta property="og:image" content="assets/rebobina-promo.jpg">
+<link rel="icon" href="assets/perfil-fotograma.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Rebobina · Manual de identidad visual v1.0 */
+:root{--rojo:#E0505F;--crema:#E5DCCB;--carbon:#141210;--negro:#1A1613;--papel:#ECE5D6;--max:1200px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;font-weight:300;font-size:18px;line-height:1.6;background:var(--carbon);color:var(--crema);-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+h1,h2,h3,.anton{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+.rojo{color:var(--rojo)}
+.etiqueta{font-family:Barlow;font-weight:500;font-size:13px;letter-spacing:.24em;text-transform:uppercase}
+.raya{display:block;width:96px;height:8px;background:var(--rojo);margin:26px 0}
+
+/* Grano */
+.grano{position:relative;isolation:isolate}
+.grano::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:.09;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.oscuro{background:var(--carbon);color:var(--crema)}
+.claro{background:var(--papel);color:var(--negro)}
+.bloque{padding:120px 0}
+
+/* Cabecera */
+.cabecera{position:sticky;top:0;z-index:50;background:rgba(20,18,16,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(229,220,203,.12)}
+.cabecera .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca .iso{height:34px;width:auto}
+.marca .logo{height:30px;width:auto}
+.menu{display:flex;gap:30px;list-style:none}
+.menu a{font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
+.menu a:hover{color:var(--rojo)}
+.menu .cta{background:var(--rojo);color:var(--negro);padding:10px 18px;border-radius:999px}
+.menu .cta:hover{color:var(--negro);background:var(--crema)}
+@media (max-width:820px){.menu li:not(:last-child){display:none}}
+
+/* Fotograma (marco con perforaciones) */
+.fotograma{--c:var(--crema);position:relative;border:10px solid var(--c);border-radius:30px;padding:18px 62px;background:var(--c)}
+.claro .fotograma{--c:var(--negro)}
+.fotograma::before,.fotograma::after{content:"";position:absolute;top:30px;bottom:30px;width:30px;
+  background:radial-gradient(circle at 50% 50%,transparent 0,transparent 0) , linear-gradient(var(--papel),var(--papel));
+  -webkit-mask:repeating-linear-gradient(to bottom,#000 0 40px,transparent 40px 68px);mask:repeating-linear-gradient(to bottom,#000 0 40px,transparent 40px 68px);border-radius:6px}
+.oscuro .fotograma::before,.oscuro .fotograma::after{background:var(--carbon)}
+.fotograma::before{left:14px}.fotograma::after{right:14px}
+.fotograma img,.fotograma video{width:100%;aspect-ratio:var(--ar,4/3);object-fit:cover;background:#000}
+
+/* Portada */
+.portada{min-height:calc(100vh - 78px);display:flex;align-items:center;padding:80px 0}
+.portada .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.portada .logo-grande{width:min(440px,90%);margin-bottom:46px}
+.portada h1{font-size:clamp(48px,6.6vw,92px)}
+.portada .sub{font-size:clamp(20px,2.2vw,28px);font-weight:300}
+.portada .vuelve{margin-top:40px;font-family:Anton;font-size:22px;letter-spacing:.32em;text-transform:uppercase}
+.portada .serv{margin-top:8px;font-family:Anton;letter-spacing:.14em;font-size:17px;opacity:.75;text-transform:uppercase}
+.botones{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.boton{display:inline-block;font-family:Anton;text-transform:uppercase;letter-spacing:.14em;font-size:16px;text-decoration:none;padding:15px 28px;border-radius:999px;border:2px solid var(--crema);transition:background .3s,color .3s,border-color .3s}
+.boton.lleno{background:var(--rojo);border-color:var(--rojo);color:var(--negro)}
+.boton:hover{background:var(--crema);border-color:var(--crema);color:var(--negro)}
+@media (max-width:900px){.portada .wrap,.dos{grid-template-columns:1fr!important}}
+
+/* Vídeo */
+.video-sec{padding:40px 0 120px}
+.video-sec .fotograma{max-width:980px;margin:0 auto;--ar:16/9}
+.video-sec video{aspect-ratio:16/9;object-fit:cover}
+
+/* Servicios */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.servicio h2{font-size:clamp(48px,6vw,88px);overflow-wrap:anywhere}
+.servicio h2 .num{color:var(--rojo);margin-right:.18em}
+.servicio .entrada{font-weight:600;font-size:26px;line-height:1.3}
+.servicio .entrada + p{margin-top:10px;font-size:19px}
+.lista{display:grid;grid-template-columns:1fr 1fr;gap:30px 44px;margin-top:40px}
+.lista.una{grid-template-columns:1fr}
+.lista h3{font-size:26px;letter-spacing:.03em;display:flex;align-items:baseline;gap:14px}
+.lista h3::before{content:"";flex:0 0 18px;height:18px;background:var(--rojo);transform:translateY(-3px)}
+.lista p{margin:10px 0 0 32px;font-size:18px}
+.lema{font-family:Anton;font-size:clamp(38px,4.4vw,58px);color:var(--rojo);text-transform:uppercase;margin-top:34px;line-height:1}
+@media (max-width:640px){.lista{grid-template-columns:1fr}.fotograma{padding:12px 44px}.fotograma::before,.fotograma::after{width:20px}.fotograma::before{left:9px}.fotograma::after{right:9px}}
+
+/* Así funciona */
+.pasos{display:grid;grid-template-columns:repeat(5,1fr);gap:26px;margin-top:70px}
+.paso .n{font-family:Anton;font-size:84px;color:var(--rojo);line-height:1}
+.paso .linea{position:relative;height:4px;background:#4a423b;margin:22px 0 34px}
+.paso .linea::before{content:"";position:absolute;left:0;top:50%;width:28px;height:28px;border-radius:50%;background:var(--rojo);transform:translateY(-50%)}
+.paso h3{font-size:30px;letter-spacing:.02em}
+.paso p{margin-top:14px;font-size:18px;opacity:.9}
+@media (max-width:980px){.pasos{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.pasos{grid-template-columns:1fr}}
+.perforado{height:34px;margin-top:100px;background:repeating-linear-gradient(to right,transparent 0 48px,var(--crema) 48px 125px,transparent 125px 150px);-webkit-mask:linear-gradient(#000,#000);border-radius:8px;opacity:.95}
+
+/* Contacto */
+.contacto .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.contacto h2{font-size:clamp(70px,9vw,140px);line-height:.95}
+.contacto .texto{font-size:24px;line-height:1.5;max-width:30ch}
+.contacto .nota{font-size:16px;opacity:.7;margin-top:28px}
+.tarjetas{display:flex;flex-direction:column;gap:20px}
+.tarjeta{display:block;text-decoration:none;border-radius:34px;padding:26px 46px;transition:transform .3s}
+.tarjeta:hover{transform:translateX(6px)}
+.tarjeta .etiqueta{font-family:Anton;font-weight:400;font-size:22px;letter-spacing:.2em}
+.tarjeta b{display:block;font-weight:600;font-size:clamp(26px,3vw,40px);line-height:1.2;margin-top:4px;word-break:break-word}
+.t-rojo{background:var(--rojo);color:var(--negro)}
+.t-crema{background:var(--crema);color:var(--negro)}
+.t-borde{border:3px solid var(--crema)}
+@media (max-width:900px){.contacto .wrap{grid-template-columns:1fr}}
+
+.pie{padding:60px 0 50px;border-top:1px solid rgba(229,220,203,.12)}
+.pie .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.pie img{height:46px;width:auto}
+.pie small{font-size:14px;opacity:.7}
+
+/* Lemas sobre foto */
+.lemas{position:relative;min-height:70vh;display:flex;align-items:center;background:#000 url(assets/playa.jpg) center/cover;color:var(--crema)}
+.lemas::before{content:"";position:absolute;inset:0;background:rgba(20,18,16,.62)}
+.lemas .wrap{position:relative;width:100%}
+.lemas p{font-family:Anton;text-transform:uppercase;font-size:clamp(36px,5vw,68px);line-height:1.15}
+.lemas p.rojo{margin-top:30px}
+
+/* Tarifas */
+.tarifas h2{font-size:clamp(60px,8vw,112px)}
+.grupo{margin-top:64px}
+.grupo>h3{font-size:34px;display:flex;gap:14px;align-items:baseline}
+.grupo>h3 .num{color:var(--rojo)}
+.tablas{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px;margin-top:24px}
+.tabla{border:2px solid var(--negro);border-radius:24px;padding:26px 28px}
+.tabla h4{font-family:Anton;font-weight:400;text-transform:uppercase;font-size:24px;letter-spacing:.03em}
+.tabla .formatos{font-size:15px;opacity:.8;margin:4px 0 14px}
+.tabla table{width:100%;border-collapse:collapse;font-size:17px}
+.tabla td{padding:7px 0;border-bottom:1px dashed rgba(26,22,19,.25)}
+.tabla td:last-child{text-align:right;font-weight:600;white-space:nowrap}
+.tabla .notas{font-size:14px;margin-top:12px;opacity:.8}
+.tabla .grande{font-family:Anton;font-size:46px;color:var(--rojo);line-height:1;margin-top:8px}
+.tabla .grande small{font-family:Barlow;font-size:15px;color:var(--negro);opacity:.75;margin-left:8px}
+.iva{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;opacity:.6;float:right}
+
+/* Packs */
+.packs h2{font-size:clamp(60px,8vw,112px)}
+.pack{margin-top:56px}
+.pack>h3{font-size:38px}
+.pack>h3 small{display:block;font-family:Barlow;text-transform:none;letter-spacing:0;font-size:18px;font-weight:400;opacity:.75;margin-top:6px}
+.opciones{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px}
+.opcion{background:#221e1a;border-radius:26px;padding:28px 30px;display:flex;flex-direction:column;gap:6px}
+.opcion .etiqueta{color:var(--rojo)}
+.opcion ul{list-style:none;margin:10px 0 18px}
+.opcion li{padding:4px 0 4px 22px;position:relative}
+.opcion li::before{content:"";position:absolute;left:0;top:13px;width:10px;height:10px;background:var(--rojo)}
+.opcion .precio{font-family:Anton;font-size:56px;line-height:1;margin-top:auto}
+.opcion .precio small{font-family:Barlow;font-size:16px;opacity:.7;margin-left:6px}
+.opcion .ahorro{font-size:15px;opacity:.75}
+.opcion .ahorro b{color:var(--rojo);font-weight:600}
+@media (max-width:760px){.opciones{grid-template-columns:1fr}}
+.aviso{font-size:15px;opacity:.7;margin-top:46px;max-width:90ch}
+
+/* Sonido */
+.sonido{background:none;border:2px solid rgba(229,220,203,.4);color:var(--crema);border-radius:999px;padding:8px 14px;font:500 12px Barlow;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+.sonido[aria-pressed=true]{border-color:var(--rojo);color:var(--rojo)}
+
+.paso-foto{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin-bottom:22px;border:4px solid var(--crema)}
+.ideas-cab{background-size:cover;background-position:center;border-radius:30px;padding:220px 50px 50px;margin-bottom:70px}
+.ideas-cab h2{font-size:clamp(52px,7vw,104px);max-width:12ch}
+.ideas-rej{display:grid;grid-template-columns:repeat(3,1fr);gap:50px 34px}
+.idea .fotograma{padding:10px 40px;border-width:6px;border-radius:20px}
+.idea .fotograma::before,.idea .fotograma::after{width:18px;top:18px;bottom:18px}
+.idea .fotograma::before{left:8px}.idea .fotograma::after{right:8px}
+.idea .n{display:block;font-family:Anton;font-size:52px;color:var(--rojo);line-height:1;margin-top:26px}
+.idea h3{font-size:32px;margin-top:6px}
+.idea p{margin-top:10px;font-size:18px}
+@media (max-width:980px){.ideas-rej{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.ideas-rej{grid-template-columns:1fr}.ideas-cab{padding:150px 26px 30px}}
+
+/* Entrada a pantalla completa */
+.portada-video{position:relative;min-height:calc(100vh - 78px);display:flex;align-items:flex-end;padding:0 0 110px;overflow:hidden;background:#000}
+.portada-video .fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.15) contrast(1.05) brightness(.62)}
+.vineta{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(10,9,8,.85) 100%)}
+.portada-video .wrap{position:relative;width:100%}
+.portada-video h1{font-size:clamp(50px,7.5vw,112px);max-width:12ch}
+.portada-video .sub{font-size:clamp(20px,2.2vw,28px)}
+.portada-video .serv{margin-top:14px;font-family:Anton;letter-spacing:.14em;font-size:17px;opacity:.85;text-transform:uppercase}
+.play-tag{position:absolute;top:40px;right:48px;font-family:Anton;font-size:30px;letter-spacing:.06em;text-transform:uppercase;color:var(--crema);opacity:.85;animation:parpadeo 1.6s steps(2) infinite}
+@keyframes parpadeo{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.play-tag{animation:none}}
+
+.intro{position:fixed;inset:0;z-index:200;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s}
+.intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.2) brightness(.4) blur(1px)}
+.intro.fuera{opacity:0;visibility:hidden}
+.intro-caja{position:relative;text-align:center;padding:30px}
+.intro-iso{width:120px;margin:0 auto 22px}
+.intro-logo{width:min(560px,80vw);margin:0 auto}
+.intro-raya{display:block;width:70px;height:6px;background:var(--rojo);margin:26px auto 18px}
+.intro-lema{font-family:Anton;letter-spacing:.34em;text-transform:uppercase;font-size:clamp(15px,1.8vw,22px)}
+.intro-play{margin-top:44px;font-family:Anton;font-size:30px;letter-spacing:.08em;text-transform:uppercase;background:var(--rojo);color:var(--negro);border:0;border-radius:999px;padding:16px 46px;cursor:pointer;transition:transform .3s,background .3s}
+.intro-play:hover{transform:scale(1.05);background:var(--crema)}
+.intro-saltar{display:block;margin:22px auto 0;background:none;border:0;color:var(--crema);opacity:.7;font:500 13px Barlow;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:5px}
+body.con-intro{overflow:hidden}
+
+/* Regala una película (estilo reel) */
+.regala{background:var(--rojo);color:var(--negro);padding:130px 0;text-align:center}
+.regala .filete{display:inline-flex;align-items:center;gap:16px;font:600 13px Barlow;letter-spacing:.3em;text-transform:uppercase}
+.regala .filete::before,.regala .filete::after{content:"";width:60px;height:2px;background:var(--negro)}
+.regala h2{font-size:clamp(70px,10vw,150px);color:var(--crema);margin-top:24px;line-height:.95}
+.regala h2 span{color:var(--negro)}
+.regala p{font-size:24px;margin:26px 0 36px;font-weight:500}
+.boton.negro{background:var(--negro);border-color:var(--negro);color:var(--crema)}
+.boton.negro:hover{background:var(--crema);border-color:var(--crema);color:var(--negro)}
+</style>
+</head>
+<body class="con-intro">
+
+<div class="intro" id="intro" role="dialog" aria-label="Bienvenida">
+  <video src="assets/entrada.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="vineta" aria-hidden="true"></div>
+  <div class="intro-caja">
+    <img src="assets/isotipo-negativo.png" alt="" class="intro-iso">
+    <img src="assets/logotipo-negativo.png" alt="Rebobina" class="intro-logo">
+    <span class="intro-raya"></span>
+    <p class="intro-lema">Y vuelve a verlo todo</p>
+    <button class="intro-play" id="intro-play">▶ Play</button>
+    <button class="intro-saltar" id="intro-saltar">Entrar sin sonido</button>
+  </div>
+</div>
+
+<header class="cabecera">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Rebobina, inicio"><img class="iso" src="assets/isotipo-negativo.png" alt=""><img class="logo" src="assets/logotipo-negativo.png" alt="Rebobina"></a>
+    <ul class="menu">
+      <li><a href="#digitalizacion">Servicios</a></li>
+      <li><a href="#ideas">Ideas</a></li>
+      <li><a href="#como">Así funciona</a></li>
+      <li><a href="#tarifas">Tarifas</a></li>
+      <li><button class="sonido" id="sonido" aria-pressed="false" title="Activar el sonido del proyector">♪ Sonido</button></li>
+      <li><a class="cta" href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="portada-video">
+    <video class="fondo" src="assets/entrada.mp4" poster="assets/entrada.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="vineta" aria-hidden="true"></div>
+    <span class="play-tag" aria-hidden="true">▶ Play</span>
+    <div class="wrap">
+      <h1>Tus recuerdos ya tienen una <span class="rojo">historia.</span></h1>
+      <span class="raya"></span>
+      <p class="sub">Nosotros la convertimos en película.</p>
+      <p class="serv">Digitalización · Edición · Proyección</p>
+      <div class="botones">
+        <a class="boton lleno" href="#contacto">Cuéntanos tu historia</a>
+        <a class="boton" href="#video">Ver el vídeo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="oscuro grano video-sec" id="video">
+    <div class="wrap">
+      <div class="fotograma">
+        <video src="assets/rebobina-promo.mp4" poster="assets/rebobina-promo.jpg" controls playsinline preload="none"></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="claro grano bloque servicio" id="digitalizacion">
+    <div class="wrap dos">
+      <div>
+        <div class="fotograma"><img src="assets/carretes.jpg" alt="Carretes de película de Súper 8 con anotaciones a mano" loading="lazy"></div>
+        <p class="lema">Digitalizar es conservar.</p>
+      </div>
+      <div>
+        <h2><span class="num">01</span>Digitalización</h2>
+        <span class="raya"></span>
+        <p class="entrada">Primero recuperamos tus recuerdos.</p>
+        <div class="lista">
+          <div><h3>Vídeo doméstico</h3><p>VHS, VHS-C, S-VHS, Vídeo 8, Hi8, Digital 8, MiniDV, Betamax, Mini DVD y HDV, a MP4, AVI o MOV. También reparamos cintas dañadas.</p></div>
+          <div><h3>Cine</h3><p>8 mm y Súper 8, pasados fotograma a fotograma en Full HD 1080p.</p></div>
+          <div><h3>Audio</h3><p>Vinilos y casetes a CD, MP3 o WAV.</p></div>
+          <div><h3>Negativos y diapositivas</h3><p>Escaneado de 35 mm en calidad estándar o alta. ¿Otro formato? Consúltanos.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oscuro grano bloque servicio" id="edicion">
+    <div class="wrap dos">
+      <div>
+        <h2><span class="num">02</span>Edición</h2>
+        <span class="raya"></span>
+        <p class="entrada">Convertimos tu material en una película.</p>
+        <p>No necesitas saber qué imágenes usar ni cómo ordenarlas: nos cuentas qué quieres recordar y buscamos esos momentos.</p>
+        <div class="lista una">
+          <div><h3>Montaje de vídeo</h3><p>Selección, montaje, ritmo, música, sonido, color y narrativa. Películas de 8 a 10 minutos o de 11 a 14.</p></div>
+          <div><h3>Animación de fotografías</h3><p>Si no tienes vídeo, damos movimiento a tus fotografías antiguas.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="fotograma" style="--ar:16/9"><video src="assets/edicion.mp4" poster="assets/edicion.jpg" autoplay muted loop playsinline aria-label="Escenas familiares en Súper 8 durante el montaje"></video></div>
+        <p class="lema">Editar es recordar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="claro grano bloque servicio" id="proyeccion">
+    <div class="wrap dos">
+      <div>
+        <div class="fotograma"><img src="assets/proyeccion-aire-libre.jpg" alt="Proyección al aire libre en una pantalla inflable al atardecer" loading="lazy"></div>
+        <p class="lema">Proyectar es compartir.</p>
+      </div>
+      <div>
+        <h2><span class="num">03</span>Proyección</h2>
+        <span class="raya"></span>
+        <p class="entrada">Y si quieres… volvemos a verla juntos.</p>
+        <p>Una noche. La familia. Los amigos. El pueblo.</p>
+        <div class="lista una">
+          <div><h3>En interior</h3><p>Pantalla de 3 por 4 metros, proyector y equipo de sonido incluidos.</p></div>
+          <div><h3>Al aire libre</h3><p>Pantalla inflable de 7 por 5 metros, proyector profesional, sonido y técnicos incluidos.</p></div>
+          <div><h3>Por Cataluña</h3><p>Nos desplazamos dentro de Cataluña.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oscuro grano bloque ideas" id="ideas">
+    <div class="wrap">
+      <div class="ideas-cab" style="background-image:linear-gradient(to bottom,rgba(20,18,16,.15),var(--carbon)),url(assets/cisne.jpg)">
+        <h2>¿Qué historia quieres volver a ver?</h2>
+        <span class="raya"></span>
+        <p style="font-size:24px">Seis ideas para empezar.</p>
+      </div>
+      <div class="ideas-rej">
+        <article class="idea"><div class="fotograma"><img src="assets/idea-infancia-mama.jpg" alt="" loading="lazy"></div><span class="n">01</span><h3>La infancia de mamá</h3><p>Sus veranos, sus juegos, sus primeros años.</p></article>
+        <article class="idea"><div class="fotograma"><img src="assets/idea-primer-verano.jpg" alt="" loading="lazy"></div><span class="n">02</span><h3>Nuestro primer verano</h3><p>Aquellas vacaciones que ya no se repitieron.</p></article>
+        <article class="idea"><div class="fotograma"><img src="assets/idea-abuelos.jpg" alt="" loading="lazy"></div><span class="n">03</span><h3>La historia de los abuelos</h3><p>Lo que ellos vivieron, para quienes vienen detrás.</p></article>
+        <article class="idea"><div class="fotograma"><img src="assets/idea-25-anos.jpg" alt="" loading="lazy"></div><span class="n">04</span><h3>25 años juntos</h3><p>Una vida en común, en una sola película.</p></article>
+        <article class="idea"><div class="fotograma"><img src="assets/idea-infancia-hijos.jpg" alt="" loading="lazy"></div><span class="n">05</span><h3>La infancia de nuestros hijos</h3><p>Esos años que pasaron demasiado deprisa.</p></article>
+        <article class="idea"><div class="fotograma"><img src="assets/idea-pueblo.jpg" alt="" loading="lazy"></div><span class="n">06</span><h3>Un pueblo que ya no existe</h3><p>Sus calles, sus fiestas y su gente, otra vez.</p></article>
+      </div>
+      <div style="text-align:center;margin-top:70px">
+        <p class="anton" style="font-size:clamp(44px,6vw,80px)">¿Cuál es la tuya?</p>
+        <p style="font-size:22px;margin:10px 0 28px">Cuéntanos qué historia quieres volver a ver.</p>
+        <a class="boton lleno" href="#contacto">Cuéntame tu historia</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lemas">
+    <div class="wrap">
+      <p>Digitalizar es conservar.</p>
+      <p>Editar es recordar.</p>
+      <p>Proyectar es compartir.</p>
+      <p class="rojo">Rebobina une las tres cosas.</p>
+    </div>
+  </section>
+
+  <section class="oscuro grano bloque" id="como">
+    <div class="wrap">
+      <h2 style="font-size:clamp(64px,8vw,120px)">Así funciona</h2>
+      <span class="raya"></span>
+      <p style="font-size:26px">De una caja de recuerdos a una película, en cinco pasos.</p>
+      <div class="pasos">
+        <div class="paso"><img class="paso-foto" src="assets/paso-1.jpg" alt="" loading="lazy"><span class="n">01</span><div class="linea"></div><h3>Traes tus recuerdos</h3><p>Cintas, películas, fotografías…</p></div>
+        <div class="paso"><img class="paso-foto" src="assets/paso-2.jpg" alt="" loading="lazy"><span class="n">02</span><div class="linea"></div><h3>Los recuperamos</h3><p>Digitalizamos y organizamos el material.</p></div>
+        <div class="paso"><img class="paso-foto" src="assets/paso-3.jpg" alt="" loading="lazy"><span class="n">03</span><div class="linea"></div><h3>Construimos la historia</h3><p>Hablamos contigo y decidimos qué quieres contar.</p></div>
+        <div class="paso"><img class="paso-foto" src="assets/paso-4.jpg" alt="" loading="lazy"><span class="n">04</span><div class="linea"></div><h3>Hacemos la película</h3><p>Montaje, música, sonido, color y narrativa.</p></div>
+        <div class="paso"><img class="paso-foto" src="assets/paso-5.jpg" alt="" loading="lazy"><span class="n">05</span><div class="linea"></div><h3>La vuelves a ver</h3><p>En casa, con tu familia o proyectada en pantalla grande.</p></div>
+      </div>
+      <div class="perforado" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="claro grano bloque tarifas" id="tarifas">
+    <div class="wrap">
+      <span class="etiqueta">Y vuelve a verlo todo</span>
+      <h2>Tarifas 2026</h2>
+      <span class="raya"></span>
+      <p style="font-size:22px">Precios con IVA incluido. Presupuesto cerrado en el momento de la consulta.</p>
+
+      <div class="grupo"><h3><span class="num">01</span>Digitalización</h3>
+        <div class="tablas">
+          <div class="tabla"><h4>Vídeo doméstico</h4><p class="formatos">VHS, VHS-C, S-VHS, Vídeo 8, Hi8, Digital 8, Betamax, MiniDV, Mini DVD, HDV · a MP4, AVI o MOV</p>
+            <table><tr><td>Hasta 15 min</td><td>20 €</td></tr>
+<tr><td>Hasta 30 min</td><td>25 €</td></tr>
+<tr><td>Hasta 60 min</td><td>30 €</td></tr>
+<tr><td>Hasta 90 min</td><td>35 €</td></tr>
+<tr><td>Hasta 120 min</td><td>40 €</td></tr>
+<tr><td>Más de 120 min</td><td>12 €/h</td></tr>
+<tr><td>Más de 10 horas</td><td>11 €/h</td></tr>
+<tr><td>Más de 20 horas</td><td>10 €/h</td></tr>
+<tr><td>Más de 30 horas</td><td>9 €/h</td></tr></table>
+            <p class="notas">Formato NTSC: +50 %. Reparación de cintas: 8 €.</p></div>
+          <div class="tabla"><h4>Cine · 8 mm y Súper 8</h4><p class="formatos">Telecine fotograma a fotograma · Full HD 1080p</p>
+            <table><tr><td>Hasta 15 min</td><td>55 €</td></tr>
+<tr><td>Hasta 30 min</td><td>75 €</td></tr>
+<tr><td>Hasta 45 min</td><td>105 €</td></tr>
+<tr><td>Hasta 60 min</td><td>135 €</td></tr>
+<tr><td>Hasta 75 min</td><td>160 €</td></tr>
+<tr><td>Hasta 90 min</td><td>185 €</td></tr>
+<tr><td>Hasta 105 min</td><td>225 €</td></tr>
+<tr><td>Hasta 120 min</td><td>240 €</td></tr>
+<tr><td>Más de 120 min</td><td>1,99 €/min</td></tr></table>
+            <p class="notas">Facturación mínima: 15 minutos (4 bobinas pequeñas de Súper 8 / 8 mm).</p></div>
+          <div class="tabla"><h4>Audio · vinilo y casete</h4><p class="formatos">A CD, MP3 o WAV</p>
+            <table><tr><td>Hasta 15 min</td><td>20 €</td></tr>
+<tr><td>Hasta 30 min</td><td>25 €</td></tr>
+<tr><td>Hasta 60 min</td><td>30 €</td></tr>
+<tr><td>Hasta 80 min</td><td>35 €</td></tr>
+<tr><td>Más de 80 min</td><td>0,45 €/min</td></tr></table></div>
+          <div class="tabla"><h4>Negativos y diapositivas 35 mm</h4><p class="formatos">Precio por unidad · estándar / alta</p>
+            <table><tr><td>De 1 a 50</td><td>0,85 € / 0,95 €</td></tr>
+<tr><td>De 51 a 150</td><td>0,75 € / 0,85 €</td></tr>
+<tr><td>De 151 a 300</td><td>0,60 € / 0,75 €</td></tr>
+<tr><td>De 301 a 500</td><td>0,45 € / 0,55 €</td></tr>
+<tr><td>Más de 500</td><td>0,40 € / 0,50 €</td></tr></table>
+            <p class="notas">Otros formatos, consultar. CD, DVD, pendrive o disco duro no incluidos.</p></div>
+        </div>
+      </div>
+
+      <div class="grupo"><h3><span class="num">02</span>Edición</h3>
+        <div class="tablas">
+          <div class="tabla"><h4>Montaje de 8 a 10 minutos</h4><p class="grande">350 €</p></div>
+          <div class="tabla"><h4>Montaje de 11 a 14 minutos</h4><p class="grande">450 €</p></div>
+          <div class="tabla"><h4>Animación de fotografías antiguas</h4><p class="formatos">Para quien no tiene vídeo</p><p class="grande">3,50 €<small>por fotografía</small></p></div>
+        </div>
+        <p class="aviso" style="margin-top:16px">Precios de referencia: el importe final depende del volumen de material y de lo que nos pidas.</p>
+      </div>
+
+      <div class="grupo"><h3><span class="num">03</span>Proyección</h3>
+        <div class="tablas">
+          <div class="tabla"><h4>En interior</h4><p class="formatos">Pantalla de 3 × 4 m, proyector y sonido incluidos</p><p class="grande">450 €<small>+ desplazamiento</small></p></div>
+          <div class="tabla"><h4>Al aire libre</h4><p class="formatos">Pantalla inflable de 7 × 5 m, proyector profesional, sonido y técnicos incluidos</p><p class="grande">700 €<small>+ desplazamiento</small></p></div>
+        </div>
+        <p class="aviso" style="margin-top:16px">El desplazamiento varía según la distancia dentro de Cataluña.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="regala grano">
+    <div class="wrap">
+      <span class="filete">Rebobina</span>
+      <h2>Regala<br><span>una película.</span></h2>
+      <p>El regalo que no cabe en una caja.</p>
+      <a class="boton negro" href="#packs">Ver los packs</a>
+    </div>
+  </section>
+
+  <section class="oscuro grano bloque packs" id="packs">
+    <div class="wrap">
+      <span class="etiqueta">Navidad · Cumpleaños · Aniversario</span>
+      <h2>Packs Rebobina</h2>
+      <span class="raya"></span>
+      <p style="font-size:22px">Tres packs según la ocasión, con dos opciones cada uno. IVA incluido.</p>
+
+      <div class="pack"><h3>Pack Navidad<small>Sin proyección</small></h3>
+        <div class="opciones">
+          <div class="opcion"><span class="etiqueta">Opción A · Vídeo</span><ul><li>Vídeo doméstico, hasta 120 min</li><li>Película de 8 a 10 min</li></ul><span class="precio">355 €</span><span class="ahorro">Por separado 390 € · <b>ahorras 35 €</b></span></div>
+          <div class="opcion"><span class="etiqueta">Opción B · Súper 8</span><ul><li>Cine 8 mm / Súper 8, hasta 30 min</li><li>Película de 8 a 10 min</li></ul><span class="precio">390 €</span><span class="ahorro">Por separado 425 € · <b>ahorras 35 €</b></span></div>
+        </div></div>
+
+      <div class="pack"><h3>Pack Cumpleaños<small>Para celebrarlo en casa</small></h3>
+        <div class="opciones">
+          <div class="opcion"><span class="etiqueta">Opción A · Sin proyección</span><ul><li>Vídeo doméstico, hasta 60 min</li><li>Película de 8 a 10 min</li></ul><span class="precio">345 €</span><span class="ahorro">Por separado 380 € · <b>ahorras 35 €</b></span></div>
+          <div class="opcion"><span class="etiqueta">Opción B · Con proyección</span><ul><li>Vídeo doméstico, hasta 120 min</li><li>Película de 8 a 10 min</li><li>Proyección en interior</li></ul><span class="precio">760 €<small>+ desplazamiento</small></span><span class="ahorro">Por separado 840 € · <b>ahorras 80 €</b></span></div>
+        </div></div>
+
+      <div class="pack"><h3>Pack Aniversario<small>Una fecha que merece estreno</small></h3>
+        <div class="opciones">
+          <div class="opcion"><span class="etiqueta">Opción A · En interior</span><ul><li>Vídeo doméstico, hasta 120 min</li><li>Cine 8 mm / Súper 8, hasta 60 min</li><li>Película de 11 a 14 min</li><li>Proyección en interior</li></ul><span class="precio">985 €<small>+ desplazamiento</small></span><span class="ahorro">Por separado 1.075 € · <b>ahorras 90 €</b></span></div>
+          <div class="opcion"><span class="etiqueta">Opción B · Al aire libre</span><ul><li>Vídeo doméstico, hasta 120 min</li><li>Cine 8 mm / Súper 8, hasta 120 min</li><li>Película de 11 a 14 min</li><li>20 fotos antiguas animadas</li><li>Proyección al aire libre</li></ul><span class="precio">1.375 €<small>+ desplazamiento</small></span><span class="ahorro">Por separado 1.500 € · <b>ahorras 125 €</b></span></div>
+        </div></div>
+
+      <p class="aviso">Los packs son orientativos y se ajustan a tu material. El ahorro se aplica a la edición y a la proyección; la digitalización va a tarifa normal. Si el material supera lo incluido, se cobra la diferencia según tarifa. La recogida y entrega del material no están incluidas, ni el desplazamiento de las proyecciones por Cataluña: consúltanos. Pack Navidad: consulta las fechas de entrega.</p>
+    </div>
+  </section>
+
+  <section class="oscuro grano bloque contacto" id="contacto">
+    <div class="wrap">
+      <div>
+        <h2>Cuéntanos<br><span class="rojo">tu historia.</span></h2>
+        <span class="raya"></span>
+        <p class="texto">Dinos qué tienes guardado: cintas, carretes, fotografías… y te contamos cómo convertirlo en una película.</p>
+        <p class="nota">Presupuesto cerrado en el momento de la consulta.</p>
+      </div>
+      <div class="tarjetas">
+        <a class="tarjeta t-rojo" href="tel:+34609244300"><span class="etiqueta">Llamar</span><b>+34 609 244 300</b></a>
+        <a class="tarjeta t-crema" href="mailto:rebobinainfo@gmail.com"><span class="etiqueta">Escribir</span><b>rebobinainfo@gmail.com</b></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="oscuro pie">
+  <div class="wrap">
+    <img src="assets/horizontal-mono-blanco.png" alt="Rebobina" style="opacity:.9">
+    <small>Digitalización · Edición · Proyección · © 2026 Rebobina</small>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  var b=document.getElementById('sonido'), intro=document.getElementById('intro');
+  var musica=new Audio('assets/sonido/musica.mp3'); musica.loop=true; musica.volume=0;
+  var claq=new Audio('assets/sonido/claqueta.mp3'); claq.volume=.8;
+  function fade(to,ms){var from=musica.volume,t0=performance.now();(function step(t){var k=Math.min(1,(t-t0)/ms);musica.volume=from+(to-from)*k;if(k<1)requestAnimationFrame(step);else if(to===0)musica.pause()})(t0)}
+  function sonar(on){b.setAttribute('aria-pressed',on);try{if(on){musica.play().then(function(){fade(.55,1500)}).catch(function(){b.setAttribute('aria-pressed',false)})}else fade(0,600)}catch(e){}}
+  function entrar(conSonido){intro.classList.add('fuera');document.body.classList.remove('con-intro');
+    if(conSonido){try{claq.currentTime=0;claq.play().catch(function(){})}catch(e){};setTimeout(function(){sonar(true)},450)}
+    try{sessionStorage.setItem('rb-intro','1')}catch(e){}}
+  var visto=false;try{visto=sessionStorage.getItem('rb-intro')==='1'}catch(e){}
+  if(visto){intro.classList.add('fuera');document.body.classList.remove('con-intro')}
+  document.getElementById('intro-play').addEventListener('click',function(){entrar(true)});
+  document.getElementById('intro-saltar').addEventListener('click',function(){entrar(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!intro.classList.contains('fuera'))entrar(false)});
+  b.addEventListener('click',function(){sonar(b.getAttribute('aria-pressed')!=='true')});
+  var v=document.querySelector('#video video'); if(v)v.addEventListener('play',function(){if(b.getAttribute('aria-pressed')==='true')sonar(false)});
+})();
+</script>
+</body>
+</html>
