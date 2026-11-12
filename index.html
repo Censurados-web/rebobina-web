@@ -259,7 +259,6 @@ body.con-intro{overflow:hidden}
       <li><a href="#ideas">Ideas</a></li>
       <li><a href="#como">Así funciona</a></li>
       <li><a href="#tarifas">Precios</a></li>
-      <li><button class="sonido" id="sonido" aria-pressed="false" title="Activar el sonido del proyector">♪ Sonido</button></li>
       <li><a class="cta" href="#contacto">Contacto</a></li>
     </ul>
   </div>
@@ -489,21 +488,21 @@ body.con-intro{overflow:hidden}
 
 <script>
 (function(){
-  var b=document.getElementById('sonido'), intro=document.getElementById('intro');
-  var musica=new Audio('assets/sonido/musica.mp3'); musica.loop=true; musica.volume=0;
+  var intro=document.getElementById('intro');
+  var musica=new Audio('assets/sonido/musica.mp3'); musica.loop=false; musica.volume=0;
   var claq=new Audio('assets/sonido/claqueta.mp3'); claq.volume=.8;
   function fade(to,ms){var from=musica.volume,t0=performance.now();(function step(t){var k=Math.min(1,(t-t0)/ms);musica.volume=from+(to-from)*k;if(k<1)requestAnimationFrame(step);else if(to===0)musica.pause()})(t0)}
-  function sonar(on){b.setAttribute('aria-pressed',on);try{if(on){musica.play().then(function(){fade(.55,1500)}).catch(function(){b.setAttribute('aria-pressed',false)})}else fade(0,600)}catch(e){}}
   function entrar(conSonido){intro.classList.add('fuera');document.body.classList.remove('con-intro');
-    if(conSonido){try{claq.currentTime=0;claq.play().catch(function(){})}catch(e){};setTimeout(function(){sonar(true)},450)}
+    if(conSonido){try{claq.currentTime=0;claq.play().catch(function(){})}catch(e){}
+      setTimeout(function(){musica.play().then(function(){fade(.55,1500)}).catch(function(){})},450)}
     try{sessionStorage.setItem('rb-intro','1')}catch(e){}}
   var visto=false;try{visto=sessionStorage.getItem('rb-intro')==='1'}catch(e){}
   if(visto){intro.classList.add('fuera');document.body.classList.remove('con-intro')}
   document.getElementById('intro-play').addEventListener('click',function(){entrar(true)});
   document.getElementById('intro-saltar').addEventListener('click',function(){entrar(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!intro.classList.contains('fuera'))entrar(false)});
-  b.addEventListener('click',function(){sonar(b.getAttribute('aria-pressed')!=='true')});
-  var v=document.querySelector('#video video'); if(v)v.addEventListener('play',function(){if(b.getAttribute('aria-pressed')==='true')sonar(false)});
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&!musica.paused)fade(0,300)});
+  document.querySelectorAll('video[controls]').forEach(function(v){v.addEventListener('play',function(){if(!musica.paused)fade(0,600)})});
 })();
 </script>
 </body>
