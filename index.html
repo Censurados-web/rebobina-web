@@ -278,6 +278,14 @@ body.con-intro .wa-flotante{display:none}
   .diapos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:20px;padding:20px 4px 10px;margin:0 -32px;padding-left:32px;padding-right:32px}
   .diapo{flex:0 0 72%;scroll-snap-align:center}
 }
+
+.servicios-cab{background:var(--rojo);color:var(--negro);text-align:center;padding:90px 0 80px}
+.servicios-cab h2{font-size:clamp(70px,10vw,150px);color:var(--crema);margin-top:14px}
+.servicios-cab .raya{background:var(--negro)}
+.servicios-indice{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:14px 40px;margin-top:10px}
+.servicios-indice a{text-decoration:none;font-family:Anton;text-transform:uppercase;font-size:clamp(22px,2.4vw,32px);letter-spacing:.04em;display:flex;align-items:baseline;gap:10px}
+.servicios-indice span{color:var(--crema)}
+.servicios-indice a:hover{color:var(--crema)}
 </style>
 </head>
 <body class="con-intro">
@@ -298,7 +306,7 @@ body.con-intro .wa-flotante{display:none}
     <ul class="menu">
       <li><a href="#como">Qué es</a></li>
       <li><a href="#ideas">Ideas</a></li>
-      <li><a href="#digitalizacion">Servicios</a></li>
+      <li><a href="#servicios">Servicios</a></li>
       <li><a href="#tarifas">Precios</a></li>
       <li><a class="cta" href="#contacto">Contacto</a></li>
     </ul>
@@ -371,6 +379,19 @@ body.con-intro .wa-flotante{display:none}
         <p style="font-size:22px;margin:10px 0 28px">Cuéntanos qué historia quieres volver a ver.</p>
         <a class="boton lleno" href="https://wa.me/34609244300?text=Hola%2C%20tengo%20unas%20cintas/pel%C3%ADculas%20guardadas%20y%20me%20gustar%C3%ADa%20saber%20c%C3%B3mo%20convertirlas%20en%20una%20pel%C3%ADcula." target="_blank" rel="noopener">Cuéntanos tu historia</a>
       </div>
+    </div>
+  </section>
+
+  <section class="servicios-cab grano" id="servicios">
+    <div class="wrap">
+      <span class="etiqueta">Lo que hacemos</span>
+      <h2>Servicios</h2>
+      <span class="raya" style="margin:24px auto"></span>
+      <ol class="servicios-indice">
+        <li><a href="#digitalizacion"><span>01</span>Digitalización</a></li>
+        <li><a href="#edicion"><span>02</span>Edición</a></li>
+        <li><a href="#proyeccion"><span>03</span>Proyección</a></li>
+      </ol>
     </div>
   </section>
 
