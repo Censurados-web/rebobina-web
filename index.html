@@ -255,6 +255,28 @@ body.con-intro{overflow:hidden}
 .wa-flotante:hover{transform:scale(1.05)}
 body.con-intro .wa-flotante{display:none}
 @media (max-width:640px){.wa-flotante span{display:none}.wa-flotante{padding:14px;right:16px;bottom:16px}}
+
+/* Qué es Rebobina · 5 pasos (estilo reel diapositivas) */
+.que-es{background:var(--rojo);color:var(--negro);padding:120px 0 130px}
+.que-es-cab{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:end;margin-bottom:64px}
+.que-es h2{font-size:clamp(56px,7vw,108px);line-height:.95;margin-top:14px}
+.que-es h2 span{color:var(--crema)}
+.que-es-texto{font-size:clamp(19px,1.7vw,23px);font-weight:500;line-height:1.5}
+.diapos{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.diapo{position:relative;text-align:center}
+.diapo-marco{background:var(--papel);border-radius:14px;padding:10% 8% 0;box-shadow:0 12px 30px rgba(26,22,19,.28);transform:rotate(var(--g,0deg));transition:transform .4s}
+.diapo:nth-child(odd){--g:-1.6deg}.diapo:nth-child(even){--g:1.4deg}
+.diapo:hover .diapo-marco{transform:rotate(0) translateY(-6px)}
+.diapo-marco img{width:100%;aspect-ratio:3/2;object-fit:cover;border:2px solid var(--negro)}
+.diapo-pie{display:flex;justify-content:space-between;font:600 10px Barlow;letter-spacing:.2em;text-transform:uppercase;opacity:.6;padding:12px 0 14px}
+.badge{position:absolute;top:-16px;left:-10px;z-index:2;width:50px;height:50px;border-radius:50%;background:var(--negro);color:var(--crema);font:400 24px Anton;display:flex;align-items:center;justify-content:center}
+.diapo h3{font-size:clamp(22px,1.9vw,30px);margin-top:26px}
+.diapo p{font-size:16px;font-weight:500;margin-top:8px}
+@media (max-width:1000px){
+  .que-es-cab{grid-template-columns:1fr}
+  .diapos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:20px;padding:20px 4px 10px;margin:0 -32px;padding-left:32px;padding-right:32px}
+  .diapo{flex:0 0 72%;scroll-snap-align:center}
+}
 </style>
 </head>
 <body class="con-intro">
@@ -273,8 +295,8 @@ body.con-intro .wa-flotante{display:none}
   <div class="wrap">
     <a class="marca" href="#inicio" aria-label="Rebobina, inicio"><img class="iso" src="assets/isotipo-negativo.png" alt=""><img class="logo" src="assets/logotipo-negativo.png" alt="Rebobina"></a>
     <ul class="menu">
+      <li><a href="#como">Qué es</a></li>
       <li><a href="#ideas">Ideas</a></li>
-      <li><a href="#como">Así funciona</a></li>
       <li><a href="#digitalizacion">Servicios</a></li>
       <li><a href="#tarifas">Precios</a></li>
       <li><a class="cta" href="#contacto">Contacto</a></li>
@@ -307,6 +329,25 @@ body.con-intro .wa-flotante{display:none}
     </div>
   </section>
 
+  <section class="que-es grano" id="como">
+    <div class="wrap">
+      <div class="que-es-cab">
+        <div>
+          <span class="etiqueta">Qué es Rebobina</span>
+          <h2>Tu película<br><span>en 5 pasos.</span></h2>
+        </div>
+        <p class="que-es-texto">Convertimos los recuerdos que tienes guardados —cintas de vídeo, películas de Súper 8, casetes, diapositivas y fotografías— en una película para volver a verla en familia. Recuperamos el material, construimos la historia contigo y, si quieres, la proyectamos en pantalla grande.</p>
+      </div>
+      <ol class="diapos">
+        <li class="diapo"><span class="badge">01</span><div class="diapo-marco"><img src="assets/paso-1.jpg" alt="" loading="lazy"><span class="diapo-pie"><span>Rebobina</span><span>01 / 05</span></span></div><h3>Traes tus recuerdos</h3><p>Cintas, películas, fotografías…</p></li>
+        <li class="diapo"><span class="badge">02</span><div class="diapo-marco"><img src="assets/paso-2.jpg" alt="" loading="lazy"><span class="diapo-pie"><span>Rebobina</span><span>02 / 05</span></span></div><h3>Los recuperamos</h3><p>Digitalizamos y organizamos el material.</p></li>
+        <li class="diapo"><span class="badge">03</span><div class="diapo-marco"><img src="assets/paso-3.jpg" alt="" loading="lazy"><span class="diapo-pie"><span>Rebobina</span><span>03 / 05</span></span></div><h3>Construimos la historia</h3><p>Hablamos contigo y decidimos qué quieres contar.</p></li>
+        <li class="diapo"><span class="badge">04</span><div class="diapo-marco"><img src="assets/paso-4.jpg" alt="" loading="lazy"><span class="diapo-pie"><span>Rebobina</span><span>04 / 05</span></span></div><h3>Hacemos la película</h3><p>Montaje, música, sonido, color y narrativa.</p></li>
+        <li class="diapo"><span class="badge">05</span><div class="diapo-marco"><img src="assets/paso-5.jpg" alt="" loading="lazy"><span class="diapo-pie"><span>Rebobina</span><span>05 / 05</span></span></div><h3>La vuelves a ver</h3><p>En casa, con tu familia o proyectada en pantalla grande.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <section class="oscuro grano bloque ideas" id="ideas">
     <div class="wrap">
       <div class="ideas-cab" style="background-image:linear-gradient(to bottom,rgba(20,18,16,.15),var(--carbon)),url(assets/cisne.jpg)">
@@ -327,22 +368,6 @@ body.con-intro .wa-flotante{display:none}
         <p style="font-size:22px;margin:10px 0 28px">Cuéntanos qué historia quieres volver a ver.</p>
         <a class="boton lleno" href="https://wa.me/34609244300?text=Hola%2C%20tengo%20unas%20cintas/pel%C3%ADculas%20guardadas%20y%20me%20gustar%C3%ADa%20saber%20c%C3%B3mo%20convertirlas%20en%20una%20pel%C3%ADcula." target="_blank" rel="noopener">Cuéntanos tu historia</a>
       </div>
-    </div>
-  </section>
-
-  <section class="oscuro grano bloque" id="como">
-    <div class="wrap">
-      <h2 style="font-size:clamp(64px,8vw,120px)">Así funciona</h2>
-      <span class="raya"></span>
-      <p style="font-size:26px">De una caja de recuerdos a una película, en cinco pasos.</p>
-      <div class="pasos">
-        <div class="paso"><span class="n">01</span><div class="linea"></div><h3>Traes tus recuerdos</h3><p>Cintas, películas, fotografías…</p></div>
-        <div class="paso"><span class="n">02</span><div class="linea"></div><h3>Los recuperamos</h3><p>Digitalizamos y organizamos el material.</p></div>
-        <div class="paso"><span class="n">03</span><div class="linea"></div><h3>Construimos la historia</h3><p>Hablamos contigo y decidimos qué quieres contar.</p></div>
-        <div class="paso"><span class="n">04</span><div class="linea"></div><h3>Hacemos la película</h3><p>Montaje, música, sonido, color y narrativa.</p></div>
-        <div class="paso"><span class="n">05</span><div class="linea"></div><h3>La vuelves a ver</h3><p>En casa, con tu familia o proyectada en pantalla grande.</p></div>
-      </div>
-      <div class="perforado" aria-hidden="true"></div>
     </div>
   </section>
 
